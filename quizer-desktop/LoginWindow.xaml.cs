@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,16 +16,40 @@ namespace quizer_desktop
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    /// 
+
+    
+        public partial class LoginWindow : Window
     {
         public LoginWindow()
         {
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Data.BaseUrl);
+            try
+            {
+                await API.Login(UserNameBox.Text, PasswordBox.Password);
+                Data.username = UserNameBox.Text;
+                Hide();
+            } catch(SvelteError err)
+            {
+                Utils.HandleSvelteError(err);
+            }
+            
+        }
+
+        private async void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await API.Register(UserNameBox.Text, PasswordBox.Password);
+            }
+            catch (SvelteError err)
+            {
+                Utils.HandleSvelteError(err);
+            }
         }
     }
 }

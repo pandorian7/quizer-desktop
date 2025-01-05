@@ -8,6 +8,7 @@ namespace quizer_desktop
 {
     public static class Data
     {
-        public static string BaseUrl = "hello";
+        public const string BaseUrl = "http://localhost:5173";
+        public static string? username = null;
     }
 }
