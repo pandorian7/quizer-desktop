@@ -20,5 +20,10 @@ namespace quizer_desktop
         {
             InitializeComponent();
         }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Data.BaseUrl);
+        }
     }
 }

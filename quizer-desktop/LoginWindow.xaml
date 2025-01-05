@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:quizer_desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LogIn" Height="424" Width="376" ResizeMode="CanMinimize">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="205*"/>
+            <ColumnDefinition Width="68*"/>
+            <ColumnDefinition Width="103*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="UserNameBox" Margin="33,75,33,0" VerticalAlignment="Top"  Padding="10" FontSize="16" Grid.ColumnSpan="3"/>
+        <PasswordBox  Margin="33,174,33,0" VerticalAlignment="Top"  Padding="10" FontSize="16" Grid.ColumnSpan="3" />
+        <Label Content="UserName" HorizontalAlignment="Left" Margin="24,44,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="24,143,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,15,2,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2"><Run Text="Welcome to quizer"/><LineBreak/><Run/></TextBlock>
+        <Button x:Name="LoginButton" Content="Login" Padding="10" BorderThickness="0" FontSize="20" HorizontalAlignment="Left" Margin="33,246,0,0" VerticalAlignment="Top" Width="294" Grid.ColumnSpan="3" Click="LoginButton_Click"/>
+        <Button x:Name="RegisterButton" Content="Register" Padding="10" BorderThickness="0" FontSize="20" HorizontalAlignment="Left" Margin="33,310,0,0" VerticalAlignment="Top" Width="294" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Window>
