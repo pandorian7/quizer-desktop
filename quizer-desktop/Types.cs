@@ -23,4 +23,18 @@ namespace quizer_desktop
         public string message { set; get; }
     }
 
+    public class QuizJson
+    {
+        public int id { set; get; }
+        public string title { set; get; }
+        public string description { set; get; }
+        public int points { set; get; }
+        public int owner_id { set; get; }
+        public string username { set; get; }
+    }
+
+    public class QuizResultsJson {
+        public List<QuizJson> quizes {  set; get; }
+    }
+
 }

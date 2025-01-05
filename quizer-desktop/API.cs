@@ -28,5 +28,25 @@ namespace quizer_desktop
             Utils.EnsureSvelteSuccess(res);
         }
 
+        public static async Task LogOut()
+        {
+            var res = await App.HTTP.PostAsync("/api/logout", null);
+            Utils.EnsureSvelteSuccess(res);
+        }
+
+        public static async Task<List<QuizJson>> GetQuizes() {
+            var res = await App.HTTP.GetAsync("/api/quizes");
+            Utils.EnsureSvelteSuccess(res);
+            var quizes = JsonSerializer.Deserialize<QuizResultsJson>(res.Content.ReadAsStringAsync().Result);
+            if (quizes is not null)
+            {
+
+                return quizes.quizes;
+            } else
+            {
+                throw new Exception("Failed to parse quizes from JSON");
+            }
+        }
+
     }
 }

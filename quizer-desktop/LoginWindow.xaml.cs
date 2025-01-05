@@ -32,10 +32,12 @@ namespace quizer_desktop
             {
                 await API.Login(UserNameBox.Text, PasswordBox.Password);
                 Data.username = UserNameBox.Text;
-                Hide();
+                var quizesWindow = new QuizesWindow();
+                quizesWindow.Show();
+                Close();
             } catch(SvelteError err)
             {
-                Utils.HandleSvelteError(err);
+                Utils.HandleError(err);
             }
             
         }
@@ -48,7 +50,7 @@ namespace quizer_desktop
             }
             catch (SvelteError err)
             {
-                Utils.HandleSvelteError(err);
+                Utils.HandleError(err);
             }
         }
     }

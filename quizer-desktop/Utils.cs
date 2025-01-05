@@ -11,7 +11,7 @@ namespace quizer_desktop
 {
     public class Utils
     {
-        public static void HandleSvelteError(SvelteError error)
+        public static void HandleError(Exception error)
         {
             MessageBox.Show($"Error: {error.Message}");
         }
