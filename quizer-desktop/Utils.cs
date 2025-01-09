@@ -13,7 +13,7 @@ namespace quizer_desktop
     {
         public static void HandleError(Exception error)
         {
-            MessageBox.Show($"Error: {error.Message}");
+            ErrorMsg(error.Message);
         }
 
         public static void CreateSvelteError(HttpResponseMessage res) {
@@ -46,6 +46,11 @@ namespace quizer_desktop
             string jsonString = JsonSerializer.Serialize(obj);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
             return content;
+        }
+
+        public static void ErrorMsg(string msg)
+        {
+            MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

@@ -20,6 +20,8 @@ namespace quizer_desktop
     /// </summary>
     public partial class QuizesWindow : Window
     {
+
+        
         public QuizesWindow()
         {
             InitializeComponent();
@@ -42,30 +44,59 @@ namespace quizer_desktop
             }
             catch (Exception)
             {
-                MessageBox.Show("LogOut Failed");
+                Utils.ErrorMsg("Login Failed");
             }
         }
 
-        private async void Quizer_ContentRendered(object sender, EventArgs e)
+        public record DataGridRecord(string Title, string Description, int Points, string Creator);
+        private async void LoadData()
         {
             var quizes = await API.GetQuizes();
             if (quizes is null)
             {
-                MessageBox.Show("null");
+                Utils.ErrorMsg("Failed to Load data");
+            }
+            else
+            {
+                QuizesDataGrid.ItemsSource = quizes.Select(q => new DataGridRecord(q.title, q.description, q.points, q.username));
+            }
+        }
+
+        private void Quizer_ContentRendered(object sender, EventArgs e)
+        {
+            LoadData();
+
+        }
+
+        private void QuizesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (QuizesDataGrid.SelectedItem is not DataGridRecord selected)
+            {
+                return;
             } else
             {
-                MessageBox.Show(quizes[1].title);
+                AttemptButton.IsEnabled = true;
+                if (selected.Creator == Data.username)
+                {
+                    DeleteButton.IsEnabled = true;
+                    EditButton.IsEnabled = true;
+                } else
+                {
+                    DeleteButton.IsEnabled = false;
+                    EditButton.IsEnabled = false;
+                }
             }
-            //string json = @"{""quizes"": { ""id"":39,""title"":""JavaScript MCQs"",""description"":""Explore the most useful concepts of javascript"",""points"":800,""owner_id"":1,""username"":""yasithnp7""}}";
-            //var data = JsonSerializer.Deserialize<QuizJson>(json);
-            //if (data is not null)
-            //{
-            //    MessageBox.Show(data.ToString());
-            //}
-            //else
-            //{
-            //    MessageBox.Show("null");
-            //}
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                "This Action Will Permenently Delete the quiz. And it is not recoverable. Do you want to Continue?",
+                "Confirm Delete",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning
+            );
         }
     }
 }
