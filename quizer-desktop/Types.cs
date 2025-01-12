@@ -37,4 +37,9 @@ namespace quizer_desktop
         public List<QuizJson> quizes {  set; get; }
     }
 
+    public class NewQuiz
+    {
+        public string title { set; get; }
+    }
+
 }
