@@ -44,7 +44,7 @@ namespace quizer_desktop
             }
             catch (Exception)
             {
-                Utils.ErrorMsg("Login Failed");
+                Utils.ErrorMsg("Logout Failed");
             }
         }
 
@@ -93,6 +93,12 @@ namespace quizer_desktop
         {
             var editWindow = new EditQuizWindow();
             editWindow.ShowDialog();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addquizWindow = new AddQuizWindow();
+            addquizWindow.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

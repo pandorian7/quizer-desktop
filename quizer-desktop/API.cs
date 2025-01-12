@@ -48,5 +48,12 @@ namespace quizer_desktop
             }
         }
 
+        public static async Task CreateQuiz(string title)
+        {
+            var newquiz = new NewQuiz { title = title};
+            var res = await App.HTTP.PostAsync("/api/quizes", Utils.JSONContent(ref newquiz));
+            Utils.EnsureSvelteSuccess(res);
+        }
+
     }
 }

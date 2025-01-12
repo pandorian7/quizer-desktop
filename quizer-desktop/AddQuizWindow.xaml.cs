@@ -23,5 +23,16 @@ namespace quizer_desktop
         {
             InitializeComponent();
         }
+
+        private async void QuizAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await API.CreateQuiz(QuizTitle.Text);
+            } catch (SvelteError err)
+            {
+                Utils.HandleError(err);
+            }
+        }
     }
 }
