@@ -89,6 +89,12 @@ namespace quizer_desktop
             }
         }
 
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            var editWindow = new EditQuizWindow();
+            editWindow.ShowDialog();
+        }
+
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show(
