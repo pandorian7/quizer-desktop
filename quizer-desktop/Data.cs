@@ -8,7 +8,7 @@ namespace quizer_desktop
 {
     public static class Data
     {
-        public const string BaseUrl = "http://localhost:5173";
+        public const string BaseUrl = "https://uni-quizer.vercel.app";
         public static string? username = null;
     }
 }
