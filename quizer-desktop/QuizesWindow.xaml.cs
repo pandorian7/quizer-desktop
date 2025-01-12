@@ -98,7 +98,10 @@ namespace quizer_desktop
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var addquizWindow = new AddQuizWindow();
-            addquizWindow.ShowDialog();
+            if (addquizWindow.ShowDialog() == true)
+            {
+                LoadData();
+            }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

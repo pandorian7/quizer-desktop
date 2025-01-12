@@ -38,8 +38,10 @@ namespace quizer_desktop
             } catch(SvelteError err)
             {
                 Utils.HandleError(err);
+            } catch (Exception)
+            {
+                Utils.ErrorMsg("Unknown error Occured");
             }
-            
         }
 
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -51,6 +53,10 @@ namespace quizer_desktop
             catch (SvelteError err)
             {
                 Utils.HandleError(err);
+            }
+            catch (Exception)
+            {
+                Utils.ErrorMsg("Unknown error Occured");
             }
         }
     }

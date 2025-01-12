@@ -29,9 +29,16 @@ namespace quizer_desktop
             try
             {
                 await API.CreateQuiz(QuizTitle.Text);
+                DialogResult = true;
+                Close();
+                
             } catch (SvelteError err)
             {
                 Utils.HandleError(err);
+            }
+            catch (Exception)
+            {
+                Utils.ErrorMsg("Unknown error Occured");
             }
         }
     }
