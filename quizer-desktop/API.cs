@@ -55,5 +55,11 @@ namespace quizer_desktop
             Utils.EnsureSvelteSuccess(res);
         }
 
+        public static async Task DeleteQuiz(int quiz_id)
+        {
+            var res = await App.HTTP.DeleteAsync($"/api/quizes/{quiz_id}");
+            Utils.EnsureSvelteSuccess(res);
+        }
+
     }
 }

@@ -21,7 +21,8 @@ namespace quizer_desktop
     public partial class QuizesWindow : Window
     {
 
-        
+
+        private QuizJson? Selected = null;
         public QuizesWindow()
         {
             InitializeComponent();
@@ -48,7 +49,6 @@ namespace quizer_desktop
             }
         }
 
-        public record DataGridRecord(string Title, string Description, int Points, string Creator);
         private async void LoadData()
         {
             var quizes = await API.GetQuizes();
@@ -58,7 +58,7 @@ namespace quizer_desktop
             }
             else
             {
-                QuizesDataGrid.ItemsSource = quizes.Select(q => new DataGridRecord(q.title, q.description, q.points, q.username));
+                QuizesDataGrid.ItemsSource = quizes;
             }
         }
 
@@ -71,13 +71,15 @@ namespace quizer_desktop
         private void QuizesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (QuizesDataGrid.SelectedItem is not DataGridRecord selected)
+            Selected = QuizesDataGrid.SelectedItem as QuizJson;
+            if (Selected is null)
             {
+                Selected = null;
                 return;
             } else
             {
                 AttemptButton.IsEnabled = true;
-                if (selected.Creator == Data.username)
+                if (Selected.username == Data.username)
                 {
                     DeleteButton.IsEnabled = true;
                     EditButton.IsEnabled = true;
@@ -104,7 +106,7 @@ namespace quizer_desktop
             }
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show(
                 "This Action Will Permenently Delete the quiz. And it is not recoverable. Do you want to Continue?",
@@ -112,6 +114,22 @@ namespace quizer_desktop
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning
             );
+            if (result == MessageBoxResult.Yes && Selected is not null) {
+                try
+                {
+                    await API.DeleteQuiz(Selected.id);
+                    LoadData();
+                } 
+                catch (SvelteError err)
+                {
+                    Utils.HandleError(err);
+                }
+                catch (Exception)
+                {
+                    Utils.ErrorMsg("Unknown error Occured");
+                }
+            }
+            
         }
     }
 }

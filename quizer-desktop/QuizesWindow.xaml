@@ -31,14 +31,21 @@
         <DataGrid 
             x:Name="QuizesDataGrid" 
             Grid.Row="1" 
-            AutoGenerateColumns="True" 
+            AutoGenerateColumns="False" 
             VerticalAlignment="Stretch" 
             HorizontalAlignment="Stretch" 
             IsSynchronizedWithCurrentItem="False" 
             IsReadOnly="True" 
             SelectionChanged="QuizesDataGrid_SelectionChanged"
             SelectionMode="Single"
-            />
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" Binding="{Binding title}" Width="6*"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding description}" Width="8*"/>
+                <DataGridTextColumn Header="Points" Binding="{Binding points}" Width="1*"/>
+                <DataGridTextColumn Header="Creator" Binding="{Binding username}" Width="4*"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Grid Grid.Row="2" Height="40">
             <Grid.ColumnDefinitions>
