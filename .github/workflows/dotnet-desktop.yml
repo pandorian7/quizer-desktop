@@ -2,7 +2,7 @@ name: Build and Release WPF App
 
 on:
   workflow_dispatch:  # Manual trigger via GitHub UI
-  
+
 permissions:
   contents: write  # Required to create releases and upload assets
   id-token: write  # Required for authentication (if needed)
@@ -29,6 +29,10 @@ jobs:
       - name: Publish the project
         run: dotnet publish quizer-desktop.sln --configuration Release --output ./output
 
+      - name: List output files
+        run: dir D:\a\quizer-desktop\quizer-desktop\quizer-desktop\bin\Release\net8.0-windows
+
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -44,6 +48,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./output/YourApp.exe  # Path to the generated executable
-          asset_name: YourApp.exe  # Name for the asset in the release
+          asset_path: ./output/quizer-desktop.exe  # Path to the generated executable
+          asset_name: quizer-desktop.exe  # Name for the asset in the release
           asset_content_type: application/octet-stream
