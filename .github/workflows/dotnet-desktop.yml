@@ -51,3 +51,5 @@ jobs:
           asset_path: ./output/quizer-desktop.exe  # Path to the generated executable
           asset_name: quizer-desktop.exe  # Name for the asset in the release
           asset_content_type: application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
