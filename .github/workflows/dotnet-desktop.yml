@@ -2,6 +2,10 @@ name: Build and Release WPF App
 
 on:
   workflow_dispatch:  # Manual trigger via GitHub UI
+  
+permissions:
+  contents: write  # Required to create releases and upload assets
+  id-token: write  # Required for authentication (if needed)
 
 jobs:
   build:
