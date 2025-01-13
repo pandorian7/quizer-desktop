@@ -27,7 +27,7 @@ jobs:
         run: dotnet build quizer-desktop.sln --configuration Release
 
       - name: Publish the project
-        run: dotnet publish quizer-desktop.sln --configuration Release --output ./output --self-contained true /p:PublishSingleFile=true
+        run: dotnet publish quizer-desktop.sln --configuration Release --output ./output
 
       - name: List output files
         run: dir D:\a\quizer-desktop\quizer-desktop\quizer-desktop\bin\Release\net8.0-windows
@@ -44,12 +44,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload .exe to Release
+      - name: Zip output folder
+        run: zip -r quizer-desktop-win64.zip output
+
+      - name: Upload .zip to Release
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./output/quizer-desktop.exe  # Path to the generated executable
-          asset_name: quizer-desktop.exe  # Name for the asset in the release
+          asset_path: ./quizer-desktop-win64.zip  # Path to the generated executable
+          asset_name: quizer-desktop-win64.zip  # Name for the asset in the release
           asset_content_type: application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
