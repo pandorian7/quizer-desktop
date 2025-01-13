@@ -27,7 +27,7 @@ jobs:
         run: dotnet build quizer-desktop.sln --configuration Release
 
       - name: Publish the project
-        run: dotnet publish quizer-desktop.sln --configuration Release --output ./output --self-contained --publish-single-file
+        run: dotnet publish quizer-desktop.sln --configuration Release --output ./output --self-contained true /p:PublishSingleFile=true
 
       - name: List output files
         run: dir D:\a\quizer-desktop\quizer-desktop\quizer-desktop\bin\Release\net8.0-windows
