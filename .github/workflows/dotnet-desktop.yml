@@ -38,7 +38,7 @@ jobs:
         uses: actions/create-release@v1
         with:
           tag_name: ${{ github.run_id }}  # Use the run ID as the tag name for uniqueness
-          release_name: Manual Release # Release name, can customize
+          release_name: Quizer Desktop # Release name, can customize
           draft: false
           prerelease: false
         env:
