@@ -14,16 +14,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.x'  # Adjust to your .NET version
+          dotnet-version: '8.x'  # Adjust to your .NET version
 
       - name: Restore dependencies
-        run: dotnet restore YourProject.sln
+        run: dotnet restore quizer-desktop.sln
 
       - name: Build the project
-        run: dotnet build YourProject.sln --configuration Release
+        run: dotnet build quizer-desktop.sln --configuration Release
 
       - name: Publish the project
-        run: dotnet publish YourProject.sln --configuration Release --output ./output
+        run: dotnet publish quizer-desktop.sln --configuration Release --output ./output
 
       - name: Create Release
         id: create_release
