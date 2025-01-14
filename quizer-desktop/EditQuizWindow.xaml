@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:quizer_desktop"
         mc:Ignorable="d"
-        Title="EditQuizWindow" Height="450" Width="800">
+        Title="EditQuizWindow" Height="500" Width="800">
     <Grid>
-        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <TextBlock Margin="0,10,10,0">Goto Page: </TextBlock>
+            <ComboBox x:Name="QuestionSelectorDropDown" Margin="0,10,10,0" Width="150"/>
+        </StackPanel>
+        <Frame x:Name="QuizEditFrame" Margin="0,0,0,50" NavigationUIVisibility="Hidden"/>
+        <Grid Margin="0,0,0,0" Height="50" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="PrvBtn" Grid.Column="0" Content="Prv" Click="PrvBtn_Click"></Button>
+            <Button x:Name="AddBtn" Grid.Column="1" Content="Add" Click="AddBtn_Click"></Button>
+            <Button x:Name="SaveBtn" Grid.Column="2" Content="Save" Click="SaveBtn_Click"></Button>
+            <Button x:Name="NxtBtn" Grid.Column="3" Content="Next" Click="NxtBtn_Click"></Button>
+        </Grid>
     </Grid>
 </Window>

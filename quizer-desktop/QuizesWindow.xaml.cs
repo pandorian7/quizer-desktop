@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -60,6 +61,9 @@ namespace quizer_desktop
             {
                 QuizesDataGrid.ItemsSource = quizes;
             }
+            EditButton.IsEnabled = false;
+            DeleteButton.IsEnabled = false;
+            AttemptButton.IsEnabled = false;
         }
 
         private void Quizer_ContentRendered(object sender, EventArgs e)
@@ -91,10 +95,16 @@ namespace quizer_desktop
             }
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
+        private async void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            var editWindow = new EditQuizWindow();
-            editWindow.ShowDialog();
+            var quiz = await API.GetQuiz(Selected!.id);
+            var editWindow = new EditQuizWindow(quiz);
+            if (editWindow.ShowDialog() == true) 
+            {
+                // save logic
+            } 
+            LoadData();
+
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
