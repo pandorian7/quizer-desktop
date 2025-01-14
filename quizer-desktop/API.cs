@@ -77,5 +77,50 @@ namespace quizer_desktop
             }
         }
 
+        public static async Task UpdateQuiz(Quiz quiz)
+        {
+            UpdateQuiz update = new()
+            {
+                id = quiz.id,
+                title = quiz.title,
+                description = quiz.description,
+                points = quiz.points
+            };
+
+            var res = await App.HTTP.PutAsync($"/api/quizes/{quiz.id}", Utils.JSONContent(ref update));
+            
+            Utils.EnsureSvelteSuccess(res);
+        }
+
+        public static async Task UpdateQuestion(Question q)
+        {
+            UpdateQuestion update = new()
+            {
+                question = new() { question = q.question, multiple_answers = q.multiple_answers, duration = q.duration },
+                answers = q.answers
+            };
+
+            var res = await App.HTTP.PutAsync($"/api/questions/{q.id}", Utils.JSONContent(ref update));
+            Utils.EnsureSvelteSuccess(res);
+        }
+
+        public static async Task CreateQuestion(int quiz_id, Question q)
+        {
+            AddQuestion add = new()
+            {
+                quiz_id = quiz_id,
+                question = new() { question = q.question, multiple_answers = q.multiple_answers, duration = q.duration },
+                answers = q.answers
+            };
+            var res = await App.HTTP.PostAsync("/api/questions/", Utils.JSONContent(ref add));
+            Utils.EnsureSvelteSuccess(res);
+        }
+
+        public static async Task DeleteQuestion(int question_id)
+        {
+            var res = await App.HTTP.DeleteAsync($"/api/questions/{question_id}");
+            Utils.EnsureSvelteSuccess(res);
+        }
+
     }
 }

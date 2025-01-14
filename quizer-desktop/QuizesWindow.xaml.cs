@@ -97,12 +97,32 @@ namespace quizer_desktop
 
         private async void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            var init_page = -1;
+            var original = await API.GetQuiz(Selected!.id);
+            List<int> existingQuestionIds = original.questions.Select(q => q.id!.Value).ToList();
             var quiz = await API.GetQuiz(Selected!.id);
-            var editWindow = new EditQuizWindow(quiz);
-            if (editWindow.ShowDialog() == true) 
+            while (true)
             {
-                // save logic
-            } 
+                var editWindow = new EditQuizWindow(quiz);
+                editWindow.SetInitPage(init_page);
+                if (editWindow.ShowDialog() == true)
+                {
+                    var res = await Quizer.SafeUpdateQuiz(quiz, editWindow.DeletedQuestions);
+                    if (res is not null)
+                    {
+                        init_page = res.Value;
+                    }
+                    else {
+                        MessageBox.Show("Quiz Saved", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                    }
+                } else
+                {
+
+                    await Quizer.SafeUpdateQuiz(original, editWindow.DeletedQuestions);
+                    break;
+                }
+            }
             LoadData();
 
         }

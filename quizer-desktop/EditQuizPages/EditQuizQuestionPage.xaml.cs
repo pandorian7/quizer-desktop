@@ -20,9 +20,15 @@ namespace quizer_desktop.EditQuizPages
     /// </summary>
     public partial class EditQuizQuestionPage : Page
     {
+        public event EventHandler<EventArgs>? OnDelete;
         public EditQuizQuestionPage()
         {
             InitializeComponent();
+        }
+
+        private void DeleteQuestionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OnDelete?.Invoke(this, EventArgs.Empty);
         }
     }
 }

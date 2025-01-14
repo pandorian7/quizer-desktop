@@ -16,6 +16,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <CheckBox x:Name="IsMultipleChoiceCheckBox" Content="Multiple Choices" IsChecked="{Binding multiple_answers}"/>
@@ -32,6 +33,7 @@
                     <ComboBoxItem Content="5 minute" Tag="300" />
                 </ComboBox>
             </StackPanel>
+            <Button x:Name="DeleteQuestionBtn" Grid.Column="2" Click="DeleteQuestionBtn_Click">Delete Question</Button>
         </Grid>
 
         <TextBlock FontSize="20" Margin="30,0,0,10">Answers</TextBlock>

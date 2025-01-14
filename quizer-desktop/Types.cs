@@ -43,25 +43,36 @@ namespace quizer_desktop
         public required string title { set; get; }
     }
 
-    public class Answer
+    public class UpdateQuiz
+    {
+        public required int id { set; get; }
+        public required string title { set; get; }
+        public string? description { set; get; }
+        public required int points { set; get; }
+    }
+        public class Answer
     {
         public int? id { set; get; }
         public required string answer { set; get; }
         public required int is_correct { set; get; }
     }
 
-    public class Question
-    {
-        public int? id { set; get; }
+
+    public class QuestionMinimal {
         public required string question { set; get; }
         public required int multiple_answers { set; get; }
         public required int duration { set; get; }
+    }
+    public class Question: QuestionMinimal
+    {
+        public int? id { set; get; }
+        
         public required List<Answer> answers { set; get; }
     }
 
     public class Quiz
     {
-        public int? id { set; get; }
+        public int id { set; get; }
         public required string title { set; get; }
         public string? description { set; get; }
         public required int points { set; get; }
@@ -69,5 +80,17 @@ namespace quizer_desktop
         public required List<Question> questions { set; get; }
 
     }
+
+    public class UpdateQuestion {
+        public required QuestionMinimal question {  set; get; }
+        public required List<Answer> answers { set; get; }
+
+    }
+
+    public class AddQuestion: UpdateQuestion
+    {
+        public required int quiz_id { set; get; }
+    }
+    
 
 }

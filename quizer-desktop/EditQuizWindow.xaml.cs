@@ -21,6 +21,7 @@ namespace quizer_desktop
     {
         public Quiz Quiz;
         public int QuestionIndex = -1;
+        public List<int> DeletedQuestions;
 
         private void RenderNavigation()
         {
@@ -30,13 +31,15 @@ namespace quizer_desktop
                 if (Quiz.questions.Count > 0)
                 {
                     NxtBtn.IsEnabled = true;
+                    NxtBtn.Content = "Question 1";
                 } else
                 {
                     NxtBtn.IsEnabled = false;
+                    NxtBtn.Content = String.Empty;
                 }
 
                 PrvBtn.Content = string.Empty;
-                NxtBtn.Content = "Question 1";
+                
             }
             else if (QuestionIndex == 0)
             {
@@ -44,13 +47,15 @@ namespace quizer_desktop
                 if (Quiz.questions.Count > 1)
                 {
                     NxtBtn.IsEnabled = true;
+                    NxtBtn.Content = "Question 2";
                 }
                 else
                 {
                     NxtBtn.IsEnabled = false;
+                    NxtBtn.Content = String.Empty;
                 }
                 PrvBtn.Content = "Quiz Metadata";
-                NxtBtn.Content = "Question 2";
+                
             }
             else if (QuestionIndex == Quiz.questions.Count - 1)
             {
@@ -93,14 +98,22 @@ namespace quizer_desktop
             else
             {
                 var questionEditPage = new EditQuizPages.EditQuizQuestionPage();
+                questionEditPage.OnDelete += OnDelete;
                 questionEditPage.DataContext = Quiz.questions[QuestionIndex];
                 QuizEditFrame.Content = questionEditPage;
             }
             RenderNavigation();
         }
+
+        public void SetInitPage(int id)
+        {
+            QuestionIndex = id;
+            RenderPage();
+        }
         public EditQuizWindow(Quiz quiz)
         {
             InitializeComponent();
+            DeletedQuestions = new();
             Quiz = quiz;
             RenderPage();
         }
@@ -143,6 +156,17 @@ namespace quizer_desktop
         {
             DialogResult = true;
             Close();
+        }
+
+        private void OnDelete(object? sender, EventArgs e)
+        {
+            if (Quiz.questions[QuestionIndex].id.HasValue)
+            {
+                DeletedQuestions.Add(Quiz.questions[QuestionIndex].id!.Value);
+            }
+            Quiz.questions.RemoveAt(QuestionIndex);
+            QuestionIndex -= 1;
+            RenderPage();
         }
     }
 }
