@@ -61,5 +61,21 @@ namespace quizer_desktop
             Utils.EnsureSvelteSuccess(res);
         }
 
+        public static async Task<Quiz> GetQuiz(int quiz_id)
+        {
+            var res = await App.HTTP.GetAsync($"/api/quizes/{quiz_id}");
+            Utils.EnsureSvelteSuccess(res);
+            var quiz = JsonSerializer.Deserialize<Quiz>(res.Content.ReadAsStringAsync().Result);
+            if (quiz is not null)
+            {
+
+                return quiz;
+            }
+            else
+            {
+                throw new Exception("Failed to parse quizes from JSON");
+            }
+        }
+
     }
 }
