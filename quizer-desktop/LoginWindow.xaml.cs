@@ -26,8 +26,15 @@ namespace quizer_desktop
             InitializeComponent();
         }
 
+        private void LockInput()
+        {
+            LoginButton.IsEnabled = false;
+            RegisterButton.IsEnabled = false;
+            UserNameBox.IsEnabled = false;
+            PasswordBox.IsEnabled = false;
+        }
 
-        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async Task LogIn()
         {
             try
             {
@@ -36,21 +43,30 @@ namespace quizer_desktop
                 var quizesWindow = new QuizesWindow();
                 quizesWindow.Show();
                 Close();
-            } catch(SvelteError err)
+            }
+            catch (SvelteError err)
             {
                 Utils.HandleError(err);
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 Utils.ErrorMsg("Unknown error Occured");
             }
+        }
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            LockInput();
+            await LogIn();
         }
 
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                LockInput();
                 await API.Register(UserNameBox.Text, PasswordBox.Password);
                 MessageBox.Show("Successfully Registered", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                await LogIn();
             }
             catch (SvelteError err)
             {
