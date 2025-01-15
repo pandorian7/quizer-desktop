@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:quizer_desktop"
         mc:Ignorable="d"
-        Title="EditQuizWindow" Height="500" Width="800">
+        Title="Edit Quiz" Height="500" Width="800">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
             <TextBlock Margin="0,10,10,0">Goto Page: </TextBlock>

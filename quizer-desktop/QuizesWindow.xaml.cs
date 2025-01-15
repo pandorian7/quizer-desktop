@@ -161,5 +161,12 @@ namespace quizer_desktop
             }
             
         }
+
+        private async void AttemptButton_Click(object sender, RoutedEventArgs e)
+        {
+            var quiz = await API.GetQuiz(Selected!.id);
+            var attemptWindow = new AttemptQuizWindow(quiz);
+            attemptWindow.ShowDialog();
+        }
     }
 }

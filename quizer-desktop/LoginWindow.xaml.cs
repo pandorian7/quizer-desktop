@@ -26,6 +26,7 @@ namespace quizer_desktop
             InitializeComponent();
         }
 
+
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -49,6 +50,7 @@ namespace quizer_desktop
             try
             {
                 await API.Register(UserNameBox.Text, PasswordBox.Password);
+                MessageBox.Show("Successfully Registered", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (SvelteError err)
             {

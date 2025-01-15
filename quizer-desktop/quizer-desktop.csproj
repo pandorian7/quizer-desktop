@@ -7,6 +7,19 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\quizer-icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\quizer-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\quizer-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\quizer-icon.ico" />
+  </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:quizer_desktop"
         mc:Ignorable="d"
         ContentRendered="Quizer_ContentRendered"
-        Title="QuizesWindow" Height="450" Width="800" ResizeMode="CanMinimize">
+        Title="Quizes" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -57,7 +57,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="EditButton" Grid.Column="0" IsEnabled="False" Click="EditButton_Click">Edit</Button>
             <Button x:Name="DeleteButton" Grid.Column="1" Click="DeleteButton_Click" IsEnabled="False">Delete</Button>
-            <Button x:Name="AttemptButton" Grid.Column="2" IsEnabled="False" >Attempt</Button>
+            <Button x:Name="AttemptButton" Grid.Column="2" IsEnabled="False" Click="AttemptButton_Click" >Attempt</Button>
             <Button x:Name="AddButton" Grid.Column="3" Height="40" VerticalAlignment="Top" Click="AddButton_Click" >Add</Button>
         </Grid>
     </Grid>

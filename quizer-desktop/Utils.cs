@@ -16,7 +16,8 @@ namespace quizer_desktop
             ErrorMsg(error.Message);
         }
 
-        public static void CreateSvelteError(HttpResponseMessage res) {
+        public static void CreateSvelteError(HttpResponseMessage res)
+        {
             if (!res.IsSuccessStatusCode)
             {
                 var json_err = JsonSerializer.Deserialize<SvelteJSONError>(res.Content.ReadAsStringAsync().Result);
@@ -28,7 +29,8 @@ namespace quizer_desktop
                 {
                     throw new SvelteError("Unknown Error");
                 }
-            } else
+            }
+            else
             {
                 throw new Exception("request is successful. yet passed to Create Svelte Error function.");
             }
@@ -42,7 +44,8 @@ namespace quizer_desktop
             }
         }
 
-        public static StringContent JSONContent<T> (ref T obj) {
+        public static StringContent JSONContent<T>(ref T obj)
+        {
             string jsonString = JsonSerializer.Serialize(obj);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
             return content;
@@ -51,6 +54,18 @@ namespace quizer_desktop
         public static void ErrorMsg(string msg)
         {
             MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public static string FormatTime(int seconds)
+        {
+            var span = TimeSpan.FromSeconds(seconds);
+            string ret = "";
+            if (span.Minutes > 0)
+            {
+                ret += $"{span.Minutes}min ";
+            }
+            ret += $"{span.Seconds:D2}s";
+            return ret;
         }
     }
 }

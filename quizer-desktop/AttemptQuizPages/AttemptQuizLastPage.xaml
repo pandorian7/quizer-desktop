@@ -1,0 +1,23 @@
+﻿<Page x:Class="quizer_desktop.AttemptQuizPages.AttemptQuizLastPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:quizer_desktop.AttemptQuizPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AttemptQuizLastPage">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="You Scored" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+        <TextBlock x:Name="ScoreBox" Grid.Row="1" Text="Score" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
+        <TextBlock x:Name="TimeTakenBox" Grid.Row="2" Text="Time" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+  
+    </Grid>
+</Page>

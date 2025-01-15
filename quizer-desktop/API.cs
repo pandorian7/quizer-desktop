@@ -122,5 +122,21 @@ namespace quizer_desktop
             Utils.EnsureSvelteSuccess(res);
         }
 
+        public static async Task<EvaluationResults> Evaluate(UserAnswers userAns, Quiz quiz)
+        {
+            var res = await App.HTTP.PostAsync($"/api/evaluate/{quiz.id}", Utils.JSONContent(ref userAns));
+            Utils.EnsureSvelteSuccess(res);
+            var results = JsonSerializer.Deserialize<EvaluationResults>(res.Content.ReadAsStringAsync().Result);
+            if (results is not null)
+            {
+
+                return results;
+            }
+            else
+            {
+                throw new Exception("Failed to parse quizes from JSON");
+            }
+        }
+
     }
 }
