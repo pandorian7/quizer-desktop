@@ -1,28 +1,43 @@
 ﻿<Window x:Class="quizer_desktop.EditQuizWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:quizer_desktop"
-        mc:Ignorable="d"
-        Title="Edit Quiz" Height="500" Width="800">
-    <Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-            <TextBlock Margin="0,10,10,0">Goto Page: </TextBlock>
+        Title="Edit Quiz" Height="565.6" Width="800"
+        Background="#F0F0F0" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header with ComboBox -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="0">
+            <TextBlock Margin="0,10,10,0" FontSize="14" FontWeight="Bold">Go to Page:</TextBlock>
             <ComboBox x:Name="QuestionSelectorDropDown" Margin="0,10,10,0" Width="150"/>
         </StackPanel>
-        <Frame x:Name="QuizEditFrame" Margin="0,0,0,50" NavigationUIVisibility="Hidden"/>
-        <Grid Margin="0,0,0,0" Height="50" VerticalAlignment="Bottom">
+
+        <!-- Frame for Quiz Editing -->
+        <Frame x:Name="QuizEditFrame" Margin="0,20,0,20" NavigationUIVisibility="Hidden" Grid.Row="1"
+               Background="White"  BorderThickness="1"/>
+
+        <!-- Footer Buttons -->
+        <Grid Margin="0,0,0,0" Height="50" VerticalAlignment="Bottom" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="PrvBtn" Grid.Column="0" Content="Prv" Click="PrvBtn_Click"></Button>
-            <Button x:Name="AddBtn" Grid.Column="1" Content="Add" Click="AddBtn_Click"></Button>
-            <Button x:Name="SaveBtn" Grid.Column="2" Content="Save" Click="SaveBtn_Click"></Button>
-            <Button x:Name="NxtBtn" Grid.Column="3" Content="Next" Click="NxtBtn_Click"></Button>
+
+            <Button x:Name="PrvBtn" Grid.Column="0" Content="Previous" Click="PrvBtn_Click" 
+                    Background="#0078D7" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+            <Button x:Name="AddBtn" Grid.Column="1" Content="Add" Click="AddBtn_Click" 
+                    Background="#4CAF50" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+            <Button x:Name="SaveBtn" Grid.Column="2" Content="Save" Click="SaveBtn_Click" 
+                    Background="#FFC107" Foreground="Black" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+            <Button x:Name="NxtBtn" Grid.Column="3" Content="Next" Click="NxtBtn_Click" 
+                    Background="#0078D7" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
         </Grid>
     </Grid>
 </Window>

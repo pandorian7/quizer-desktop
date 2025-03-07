@@ -9,23 +9,25 @@
       Title="EditQuizMetadataPage">
 
 
-    <StackPanel>
-        <TextBlock FontSize="30" Margin="20,20,0,30">Edit Quiz Metadata</TextBlock>
-        <TextBlock FontSize="20" Margin="30,0,0,10">Title</TextBlock>
-        <TextBox x:Name="TitleBox" Margin="30,0,30,20" Padding="10" FontSize="18" AcceptsReturn="True" TextWrapping="Wrap" Height="80" Text="{Binding title}"/>
-        <TextBlock FontSize="20" Margin="30,0,0,10">Description</TextBlock>
-        <TextBox x:Name="DescriptionBox" Margin="30,0,30,20" Padding="10" FontSize="16" AcceptsReturn="True" TextWrapping="Wrap" Height="85" Text="{Binding description}"/>
-        <StackPanel Orientation="Horizontal" Margin="30,0,30,20" >
-            <TextBlock Margin="0,0,30,0">Points</TextBlock>
-            <ComboBox SelectedValuePath="Tag" x:Name="PointsComboBox" Width="100" SelectedValue="{Binding points}">
-                <ComboBoxItem Content="100" Tag="100" />
-                <ComboBoxItem Content="300" Tag="300" />
-                <ComboBoxItem Content="500" Tag="500" />
-                <ComboBoxItem Content="800" Tag="800" />
-                <ComboBoxItem Content="1000" Tag="100" />
+    <StackPanel Background="#F0F0F0">
+        <TextBlock FontSize="30" FontWeight="Bold" Foreground="#0078D7" Margin="0,0,0,20">Edit Quiz Metadata</TextBlock>
+
+        <TextBlock FontSize="20" Margin="0,0,0,5">Title</TextBlock>
+        <TextBox x:Name="TitleBox" Margin="0,0,0,20" Padding="10" FontSize="18" AcceptsReturn="True" TextWrapping="Wrap" Height="60" Text="{Binding title}"/>
+
+        <TextBlock FontSize="20" Margin="0,20,0,5">Description</TextBlock>
+        <TextBox x:Name="DescriptionBox" Margin="0,0,0,20" Padding="10" FontSize="16" AcceptsReturn="True" TextWrapping="Wrap" Height="80" Text="{Binding description}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBlock FontSize="18" VerticalAlignment="Center" Margin="0,0,15,0">Points</TextBlock>
+            <ComboBox SelectedValuePath="Tag" x:Name="PointsComboBox" Width="120" SelectedValue="{Binding points}">
+                <ComboBoxItem Content="100" Tag="100"/>
+                <ComboBoxItem Content="300" Tag="300"/>
+                <ComboBoxItem Content="500" Tag="500"/>
+                <ComboBoxItem Content="800" Tag="800"/>
+                <ComboBoxItem Content="1000" Tag="1000"/>
+                <!-- Fixed incorrect tag -->
             </ComboBox>
         </StackPanel>
     </StackPanel>
-
-
 </Page>

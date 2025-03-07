@@ -6,40 +6,48 @@
       xmlns:local="clr-namespace:quizer_desktop.EditQuizPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditQuizQuestionPage">
+      Title="EditQuizQuestionPage"
+      Background="#F0F0F0">
 
     <StackPanel>
-        <TextBlock FontSize="30" Margin="20,20,0,30">Edit Quiz Question</TextBlock>
-        <TextBlock FontSize="20" Margin="30,0,0,10">Question</TextBlock>
-        <TextBox x:Name="QuestionBox" Margin="30,0,30,10" Padding="10" FontSize="16" AcceptsReturn="True" TextWrapping="Wrap" Height="60" Text="{Binding question}"/>
-        <Grid Margin="30,0,30,0">
+        <TextBlock FontSize="30" FontWeight="Bold" Foreground="#0078D7" Margin="0,0,0,20">Edit Quiz Question</TextBlock>
+
+        <TextBlock FontSize="20" Margin="0,0,0,5">Question</TextBlock>
+        <TextBox x:Name="QuestionBox" Margin="0,0,0,20" Padding="10" FontSize="16" AcceptsReturn="True" TextWrapping="Wrap" Height="60" Text="{Binding question}"/>
+
+        <Grid Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <CheckBox x:Name="IsMultipleChoiceCheckBox" Content="Multiple Choices" IsChecked="{Binding multiple_answers}"/>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <CheckBox x:Name="IsMultipleChoiceCheckBox" Content="Multiple Choices" IsChecked="{Binding multiple_answers}" VerticalAlignment="Center"/>
             </StackPanel>
+
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Margin="0,0,30,0">Duration</TextBlock>
-                <ComboBox SelectedValuePath="Tag" x:Name="DurationComboBox" Width="100" SelectedValue="{Binding duration}">
+                <TextBlock Margin="0,0,15,0" VerticalAlignment="Center">Duration</TextBlock>
+                <ComboBox SelectedValuePath="Tag" x:Name="DurationComboBox" Width="120" SelectedValue="{Binding duration}">
                     <ComboBoxItem Content="10 seconds" Tag="10" />
                     <ComboBoxItem Content="30 seconds" Tag="30" />
                     <ComboBoxItem Content="1 minute" Tag="60" />
-                    <ComboBoxItem Content="2 minute" Tag="120" />
-                    <ComboBoxItem Content="3 minute" Tag="180" />
-                    <ComboBoxItem Content="4 minute" Tag="240" />
-                    <ComboBoxItem Content="5 minute" Tag="300" />
+                    <ComboBoxItem Content="2 minutes" Tag="120" />
+                    <ComboBoxItem Content="3 minutes" Tag="180" />
+                    <ComboBoxItem Content="4 minutes" Tag="240" />
+                    <ComboBoxItem Content="5 minutes" Tag="300" />
                 </ComboBox>
             </StackPanel>
-            <Button x:Name="DeleteQuestionBtn" Grid.Column="2" Click="DeleteQuestionBtn_Click">Delete Question</Button>
+
+            <Button x:Name="DeleteQuestionBtn" Grid.Column="2" Content="Delete Question" Click="DeleteQuestionBtn_Click" Height="30"
+                    Background="#D32F2F" Foreground="White" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
         </Grid>
 
-        <TextBlock FontSize="20" Margin="30,0,0,10">Answers</TextBlock>
-        <DataGrid x:Name="AnswersDataGrid" Margin="30,0,30,0" ItemsSource="{Binding answers}" AutoGenerateColumns="False" Height="140">
+        <TextBlock FontSize="20" Margin="0,0,0,5">Answers</TextBlock>
+        <DataGrid x:Name="AnswersDataGrid" Margin="0,0,0,20" ItemsSource="{Binding answers}" AutoGenerateColumns="False" Height="140" 
+                  AlternatingRowBackground="#EAEAEA" RowBackground="White" BorderBrush="#CCC" BorderThickness="1">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding is_correct}"/>
+                <DataGridCheckBoxColumn Header="Correct" Binding="{Binding is_correct}" Width="Auto"/>
                 <DataGridTextColumn Header="Answer" Binding="{Binding answer}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -1,23 +1,61 @@
 ﻿<Page x:Class="quizer_desktop.AttemptQuizPages.AttemptQuizFrontPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:quizer_desktop.AttemptQuizPages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="AttemptQuizFrontPage">
 
-    <Grid Margin="30">
+    <Grid Background="#F0F0F0" Margin="30">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="QuizTitleLabel" Grid.Row="0" Text="Quiz Title" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" TextWrapping="Wrap"/>
-        <TextBlock x:Name="QuizDescriptionLabel" Grid.Row="1" Text="Quiz Description" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" TextWrapping="Wrap"/>
-        <TextBlock x:Name="QuizPointsLabel" Grid.Row="2" Text="Quiz Points" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" TextWrapping="Wrap"/>
-        <Button x:Name="AttemptBtn" Grid.Row="3" FontSize="30" Margin="160,15,160,15" Click="AttemptBtn_Click">Attempt Now</Button>
+
+        <!-- Quiz Title -->
+        <TextBlock x:Name="QuizTitleLabel" 
+                   Text="Quiz Title" 
+                   FontSize="36" FontWeight="Bold" 
+                   Foreground="#333" 
+                   HorizontalAlignment="Center" 
+                   TextWrapping="Wrap"
+                   Margin="0,10,0,20"/>
+
+        <!-- Quiz Description -->
+        <TextBlock x:Name="QuizDescriptionLabel" 
+                   Text="Quiz Description" 
+                   FontSize="22" 
+                   Foreground="#444" 
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Margin="20,0,20,20" 
+                   Grid.Row="1"/>
+
+        <!-- Quiz Points -->
+        <TextBlock x:Name="QuizPointsLabel" 
+                   Text="Quiz Points" 
+                   FontSize="20" 
+                   FontWeight="Bold"
+                   Foreground="#555"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,20" 
+                   Grid.Row="2"/>
+
+        <!-- Attempt Button -->
+        <Button x:Name="AttemptBtn" 
+                Content="Attempt Now" 
+                FontSize="26" 
+                FontWeight="Bold" 
+                Background="#0078D7" 
+                Foreground="White" 
+                Padding="15" 
+                Width="300"
+                HorizontalAlignment="Center"
+                BorderThickness="0"
+                Cursor="Hand"
+                Grid.Row="3"
+                Click="AttemptBtn_Click"/>
+
     </Grid>
 </Page>

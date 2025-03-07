@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:quizer_desktop"
+        Background="#F0F0F0"
         mc:Ignorable="d"
-        Title="Attempt Quiz" Height="450" Width="800">
+        Title="Attempt Quiz" Height="550" Width="800" ResizeMode="NoResize">
     <Grid>
         <Frame x:Name="QuizAttemptFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

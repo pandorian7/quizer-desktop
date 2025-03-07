@@ -50,6 +50,41 @@ namespace quizer_desktop
             }
         }
 
+        private void EnableEdit()
+        {
+            EditButton.IsEnabled = true;
+        }
+
+        private void DisableEdit()
+        {
+            EditButton.IsEnabled = false;
+        }
+
+        private void EnableDelete()
+        {
+            DeleteButton.IsEnabled = true;
+            DeleteButton.Foreground = Brushes.White;
+        }
+
+
+        private void DisableDelete()
+        {
+            DeleteButton.IsEnabled = false;
+            DeleteButton.Foreground = Brushes.Black;
+        }
+
+        private void EnableAttempt()
+        {
+            AttemptButton.IsEnabled = true;
+            AttemptButton.Foreground = Brushes.White;
+        }
+
+        private void DisableAttempt()
+        {
+            AttemptButton.IsEnabled = false;
+            AttemptButton.Foreground = Brushes.Black;
+        }
+
         private async void LoadData()
         {
             var quizes = await API.GetQuizes();
@@ -61,9 +96,9 @@ namespace quizer_desktop
             {
                 QuizesDataGrid.ItemsSource = quizes;
             }
-            EditButton.IsEnabled = false;
-            DeleteButton.IsEnabled = false;
-            AttemptButton.IsEnabled = false;
+            DisableEdit();
+            DisableDelete();
+            DisableAttempt();
         }
 
         private void Quizer_ContentRendered(object sender, EventArgs e)
@@ -82,15 +117,15 @@ namespace quizer_desktop
                 return;
             } else
             {
-                AttemptButton.IsEnabled = true;
+                EnableAttempt();
                 if (Selected.username == Data.username)
                 {
-                    DeleteButton.IsEnabled = true;
-                    EditButton.IsEnabled = true;
+                    EnableDelete();
+                    EnableEdit();
                 } else
                 {
-                    DeleteButton.IsEnabled = false;
-                    EditButton.IsEnabled = false;
+                    DisableDelete();
+                    DisableEdit();
                 }
             }
         }

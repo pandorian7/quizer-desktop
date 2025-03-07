@@ -1,23 +1,32 @@
 ﻿<Page x:Class="quizer_desktop.AttemptQuizPages.AttemptQuizLastPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:quizer_desktop.AttemptQuizPages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AttemptQuizLastPage">
+      Title="Quiz Results" Background="#F0F0F0">
 
-    <Grid Margin="30">
+    <Grid Margin="40">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="You Scored" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
-        <TextBlock x:Name="ScoreBox" Grid.Row="1" Text="Score" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40"/>
-        <TextBlock x:Name="TimeTakenBox" Grid.Row="2" Text="Time" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-  
+
+        <!-- Title -->
+        <TextBlock Text="Quiz Completed!" FontSize="30" FontWeight="Bold"
+                   Foreground="#0078D7" HorizontalAlignment="Center"/>
+
+        <!-- Score Label -->
+        <TextBlock Grid.Row="1" Text="You Scored:" FontSize="22"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,5"/>
+
+        <!-- Score Value -->
+        <TextBlock x:Name="ScoreBox" Grid.Row="2" Text="Score" FontSize="50"
+                   FontWeight="Bold" Foreground="Black"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <!-- Time Taken -->
+        <TextBlock x:Name="TimeTakenBox" Grid.Row="3" Text="Time Taken: --" FontSize="18"
+                   Foreground="Gray" Margin="0,15,0,0"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

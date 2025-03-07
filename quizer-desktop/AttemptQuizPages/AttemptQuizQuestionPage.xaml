@@ -6,35 +6,47 @@
       xmlns:local="clr-namespace:quizer_desktop.AttemptQuizPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AttemptQuizQuestionPage">
+      Title="AttemptQuizQuestionPage"
+      Background="#F0F0F0">
 
-    <Grid Margin="30">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="2.7*"/>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
+
+        <!-- Question Block -->
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <TextBlock x:Name="QuestionBlock" FontSize="35" TextWrapping="Wrap">Question</TextBlock>
+            <TextBlock x:Name="QuestionBlock" FontSize="30" FontWeight="Bold" TextWrapping="Wrap" Foreground="#333">Question</TextBlock>
         </ScrollViewer>
-        <DataGrid x:Name="AnswersDataGrid" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" CurrentCellChanged="AnswersDataGrid_CurrentCellChanged">
+
+        <!-- Answers DataGrid -->
+        <DataGrid x:Name="AnswersDataGrid" Grid.Row="1" CanUserAddRows="False" AutoGenerateColumns="False" CurrentCellChanged="AnswersDataGrid_CurrentCellChanged"
+                  AlternatingRowBackground="#EAEAEA" RowBackground="White" BorderBrush="#CCC" BorderThickness="1" Margin="0,10,0,10">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="" Width="30" Binding="{Binding is_correct}"/>
                 <DataGridTextColumn Header="Answer" Width="*" Binding="{Binding answer}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock x:Name="NAnswersBlock" Grid.Row="2" FontSize="15">Is Multiple Question</TextBlock>
-        <Grid  Grid.Row="3">
+
+        <!-- Multiple Question Indicator -->
+        <TextBlock x:Name="NAnswersBlock" Grid.Row="2" FontSize="15" FontWeight="Bold" Foreground="#0078D7" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,10">Is Multiple Question</TextBlock>
+
+        <!-- Footer with Navigation and Timer -->
+        <Grid Grid.Row="3" Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="QuestionIndexBlock" Grid.Column="0" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center">#i</TextBlock>
-            <TextBlock x:Name="TimeRemainingBlock" Grid.Column="1" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center">time</TextBlock>
-            <Button x:Name="NextBtn" Grid.Column="3" Click="NextBtn_Click">Next</Button>
+
+            <TextBlock x:Name="QuestionIndexBlock" Grid.Column="0" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#333">#i</TextBlock>
+            <TextBlock x:Name="TimeRemainingBlock" Grid.Column="1" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#D32F2F">time</TextBlock>
+            <Button x:Name="NextBtn" Grid.Column="3" Content="Next" Click="NextBtn_Click" 
+                    Background="#0078D7" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Padding="20,10,20,10"/>
         </Grid>
     </Grid>
 </Page>
