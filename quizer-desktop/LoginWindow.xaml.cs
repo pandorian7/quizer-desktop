@@ -34,6 +34,14 @@ namespace quizer_desktop
             PasswordBox.IsEnabled = false;
         }
 
+        private void UnlockInput()
+        {
+            LoginButton.IsEnabled = true;
+            RegisterButton.IsEnabled = true;
+            UserNameBox.IsEnabled = true;
+            PasswordBox.IsEnabled = true;
+        }
+
         private async Task LogIn()
         {
             try
@@ -57,6 +65,7 @@ namespace quizer_desktop
         {
             LockInput();
             await LogIn();
+            UnlockInput();
         }
 
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -76,6 +85,7 @@ namespace quizer_desktop
             {
                 Utils.ErrorMsg("Unknown error Occured");
             }
+            UnlockInput();
         }
     }
 }
